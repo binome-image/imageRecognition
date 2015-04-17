@@ -17,15 +17,8 @@ using namespace DGtal::Z2i; //We'll only consider Z² digital space on
 			    //32bit integers
 
 
-Point next(Point p) {
-  vector<Point> next(7);
-  next[0] = Point(0,1);
-  next[1] = Point(1,0);
-  next[2] = Point(0,-1);
-  next[3] = Point(-1,0);
-  next[4] = Point(0,1);
-  next[5] = Point(1,0);
-  next[6] = Point(0,-1);
+Point nextpoint(Point p, vector<Point> next) {
+
 
   std::vector<Point>::iterator it;
 
@@ -34,10 +27,14 @@ Point next(Point p) {
   return *it;
 }
 
-int main()
+int main(int argc, char** argv)
 {
 
-  std::string filename = "hop.pgm";
+  if(argc < 2){
+    cout << "need input pgm picture" << endl;
+    return -1;
+  }
+  std::string filename = argv[1];
 
   //Image type (image of unsigned int)
   typedef ImageContainerBySTLVector< Domain, unsigned int > Image;
@@ -45,7 +42,7 @@ int main()
   //We read the PGM file
   Image image = PGMReader<Image>::importPGM(filename);
 
-  trace.info() << "Image read :"<< image <<std::endl;
+  //trace.info() << "Image read :"<< image <<std::endl;
 
   //We convert pixels in ]0,255] into a digital set
   DigitalSet set2d( image.domain() );
@@ -56,6 +53,14 @@ int main()
   Point pout = pin;
   Point pp;
   vector<Point> contour;
+  vector<Point> next(7);
+  next[0] = Point(0,1);
+  next[1] = Point(1,0);
+  next[2] = Point(0,-1);
+  next[3] = Point(-1,0);
+  next[4] = Point(0,1);
+  next[5] = Point(1,0);
+  next[6] = Point(0,-1);
 
 
   pout[1]++;
@@ -66,24 +71,33 @@ int main()
   contour.push_back(pin);
   pout[1]--;
   pout[0]++;
-  if(set2d(pout))
-    cout << "go left" << endl;
-  else{
-    cout << "go down" << endl;
+  if(!set2d(pout)) {
     pout[1]--;
     pout[0]--;
   }
-  
-  while( contour[0] != pout ){
-    pp = next(pin - pout);
+  int c = 0;
+  while( contour[0] != pout && c < 100000){
+    c++;
+    pp = nextpoint(pin - pout, next);
+    while(not(set2d(pout + pp)) && c < 100000){
+      c++;
+      pp = nextpoint(pp, next);
+    }
+    //cout << " -- vers : " << pp << endl;
+
     pin = pout;
     pout += pp;
     contour.push_back(pin);
   }
-  cout << " bordure : entre " << pout << " et " << pin << endl;
-  cout << "nb de points dans l'image : " << set2d.size() << endl;
-  cout << "nb de points dans le contour : " << contour.size();
-  
+  if (c == 100000)
+    return -1;
+  //cout << " bordure : entre " << pout << " et " << contour[0] << endl;
+  //cout << "nb de points dans l'image : " << set2d.size() << endl;
+  //cout << "nb de points dans le contour : " << contour.size() << endl;
+  cout << ((float) contour.size() / sqrt((float) set2d.size())) << endl;
+  /*for(int i =0; i< contour.size(); i++){
+    cout << "   -- "<< contour[i] << endl;
+  }*/
   
   //We display the set
   Board2D board;
