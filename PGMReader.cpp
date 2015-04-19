@@ -18,14 +18,34 @@ using namespace DGtal::Z2i; //We'll only consider Z² digital space on
 
 
 Point nextpoint(Point p, vector<Point> next) {
-
-
   std::vector<Point>::iterator it;
 
   it = find (next.begin(), next.end(), p);
   it++;
   return *it;
 }
+
+Point barycentre(DigitalSet forme){
+  DigitalSet::Iterator it;
+  Point bar(0,0);
+  for( it = forme.begin(); it != forme.end(); ++it){
+    bar += *it;
+  }
+  bar[0] = bar[0]/forme.size();
+  bar[1] = bar[1]/forme.size();
+  return bar;
+}
+
+double distFarthestPoint(DigitalSet forme, Point p){
+  DigitalSet::Iterator it;
+  double r;
+
+  for( it = forme.begin(); it != forme.end(); ++it){
+    r = max(r, (*it - p).norm());
+  }
+  return r;
+}
+
 
 int main(int argc, char** argv)
 {
@@ -95,6 +115,7 @@ int main(int argc, char** argv)
   //cout << "nb de points dans l'image : " << set2d.size() << endl;
   //cout << "nb de points dans le contour : " << contour.size() << endl;
   cout << ((float) contour.size() / sqrt((float) set2d.size())) << endl;
+  cout << distFarthestPoint(set2d, barycentre(set2d)) /  sqrt((float) set2d.size())<< endl;
   /*for(int i =0; i< contour.size(); i++){
     cout << "   -- "<< contour[i] << endl;
   }*/

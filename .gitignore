@@ -8,6 +8,10 @@
 *.gch
 *.pch
 
+# copy files
+*~
+
+
 # Compiled Dynamic libraries
 *.so
 *.dylib
