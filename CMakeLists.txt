@@ -27,6 +27,6 @@ SET(SRCs
 
 
 FOREACH(FILE ${SRCs})
-  add_executable(${FILE} ${FILE})
+  add_executable(${FILE} ${FILE} utils)
   target_link_libraries (${FILE} ${DGTAL_LIBRARIES}  ${Boost_LIBRAIRIES}  ${Boost_PROGRAM_OPTIONS_LIBRARY})
 ENDFOREACH(FILE)
