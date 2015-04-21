@@ -114,23 +114,28 @@ int main(int argc, char** argv)
   }
   if (c == 100000)
     return -1;
+
+  vector<Point> ch = convexHull(contour);
   //cout << " bordure : entre " << pout << " et " << contour[0] << endl;
   //cout << "nb de points dans l'image : " << set2d.size() << endl;
   //cout << "nb de points dans le contour : " << contour.size() << endl;
   cout << ((float) contour.size() / sqrt((float) set2d.size())) << endl;
   cout << distFarthestPoint(set2d, barycentre(set2d)) /  sqrt((float) set2d.size())<< endl;
-  cout << ((float) convexHull(contour).size())/(float) contour.size() << endl;
+  cout << ((float) ch.size())/(float) contour.size() << endl;
   /*for(int i =0; i< contour.size(); i++){
     cout << "   -- "<< contour[i] << endl;
   }*/
   
   //We display the set
-  /*
+  
   Board2D board;
   board << image.domain() << set2d;
+  for(int i=0; i<(ch.size()-1); i++){
+    board.drawLine(ch[i][0], ch[i][1], ch[i+1][0], ch[i+1][1]);
+  }
 
   board.saveEPS("hop-set.eps");
-  */
+
 
   return 0;
 }
