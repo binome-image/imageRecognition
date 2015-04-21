@@ -127,12 +127,16 @@ int main(int argc, char** argv)
   }*/
   
   //We display the set
-  
+
+  Color red( 255, 0, 0 );
   Board2D board;
-  board << image.domain() << set2d;
+  board << set2d
+        << CustomStyle( p0.className(), new CustomColors( red, red ) )
+        <<image.domain() ;
   for(int i=0; i<(ch.size()-1); i++){
     board.drawLine(ch[i][0], ch[i][1], ch[i+1][0], ch[i+1][1]);
   }
+
 
   board.saveEPS("hop-set.eps");
 
