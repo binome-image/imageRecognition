@@ -125,12 +125,13 @@ int main(int argc, char** argv)
   }*/
   
   //We display the set
-  /*
+  Color red( 255, 0, 0 );
   Board2D board;
-  board << image.domain() << set2d;
+  board << set2d
+	<< CustomStyle( p0.className(), new CustomColors( red, red ) )
+	<<image.domain() ;
 
   board.saveEPS("hop-set.eps");
-  */
 
   return 0;
 }
