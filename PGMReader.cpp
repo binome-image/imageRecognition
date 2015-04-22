@@ -48,6 +48,7 @@ int main(int argc, char** argv)
   vector<Point> ch = convexHull(contour);
 
   // SIGNATURE
+  cout << bar<< endl;
   cout << ((float) contour.size() / sqrt((float) set2d.size())) << endl;
   cout << distFarthestPoint(set2d, bar) /  sqrt((float) set2d.size())<< endl;
   cout << ((float) ch.size())/(float) contour.size() << endl; 
@@ -71,14 +72,14 @@ void displayEps(DigitalSet set2d, vector<Point> contour,
   for(int i=0; i<(contour.size()); i++){
     board << contour[i];  
   }  
-  /*board << CustomStyle( bar.className(), new CustomColors( blue, blue ) ); 
+  board << CustomStyle( bar.className(), new CustomColors( blue, blue ) ); 
   for(int i=0; i<(ch.size()); i++){
     board << ch[i];
-    cout << ch[i] << endl;
+    //cout << ch[i] << endl;
   }
-  for(int i=0; i<(ch.size()); i++){
+  for(int i=0; i<(ch.size()-1); i++){
     board.drawLine(ch[i][0], ch[i][1], ch[i+1][0], ch[i+1][1]);
-  }*/
+  }
 
   board.saveEPS("hop-set.eps");
 }
