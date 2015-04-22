@@ -15,8 +15,6 @@ using namespace DGtal;
 using namespace DGtal::Z2i; //We'll only consider Z² digital space on
 			    //32bit integers
 
-int util();
-
 int orientation(Point p, Point q, Point r);
 
 Point nextpoint(Point p);
@@ -25,3 +23,4 @@ Point barycentre(DigitalSet forme);
 
 double distFarthestPoint(DigitalSet forme, Point p);
 
+vector<Point> borderExtraction(DigitalSet set2d);

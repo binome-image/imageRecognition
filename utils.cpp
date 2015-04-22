@@ -1,5 +1,3 @@
-
-
 ///////////////////////////////////////////////////////////////////////////////
 #include <iostream>
 #include <vector>
@@ -20,9 +18,6 @@ using namespace DGtal;
 using namespace DGtal::Z2i; //We'll only consider Z² digital space on
 			    //32bit integers
 
-int util(){
-	return 1;
-}
 
 int orientation(Point p, Point q, Point r){
   Point pq = q - p;
@@ -61,6 +56,43 @@ double distFarthestPoint(DigitalSet forme, Point p){
     r = max(r, (*it - p).norm());
   }
   return r;
+}
+
+vector<Point> borderExtraction(DigitalSet set2d){
+  //border extraction
+  Point pin = *set2d.begin();
+  Point pout = pin;
+  Point pp;
+  vector<Point> contour;
+
+
+  pout[1]++;
+  while (set2d(pout)) {
+    pin[1]++;
+    pout[1]++;
+    }
+  contour.push_back(pin);
+  pout[1]--;
+  pout[0]++;
+  if(!set2d(pout)) {
+    pout[1]--;
+    pout[0]--;
+  }
+  int c = 0;
+  while( contour[0] != pout && c < 100000){
+    c++;
+    pp = nextpoint(pin - pout);
+    while(not(set2d(pout + pp)) && c < 100000){
+      c++;
+      pp = nextpoint(pp);
+    }
+    //cout << " -- vers : " << pp << endl;
+
+    pin = pout;
+    pout += pp;
+    contour.push_back(pin);
+  }
+  return contour;
 }
 
 
