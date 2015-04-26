@@ -24,7 +24,7 @@ Point p0;
 
 bool comp(Point x, Point y){
   if (orientation(p0, x, y) == 0) {
-    return ( (x-p0).norm() < (y-p0).norm() );
+    return ( (x-p0).norm() <= (y-p0).norm() );
   }
   else return (orientation(p0, x, y) == -1);
 }
@@ -32,12 +32,11 @@ bool comp(Point x, Point y){
 vector<Point> convexHull(vector<Point> contour){
   Point bottomleft = contour[0];
   vector<Point>::iterator it, mem;
-  int rank = 0;
-  for(it = contour.begin()+1; it != contour.end(); ++it){
+  mem = contour.begin();
+ for(it = contour.begin()+1; it != contour.end(); ++it){
     if(bottomleft[1] > (*it)[1] || (bottomleft[1] == (*it)[1] && bottomleft[0] > (*it)[0])){
       bottomleft = *it;
       mem = it;
-      rank = (it - contour.begin())/sizeof(Point); 
     }
   }
   p0 = bottomleft;
@@ -60,6 +59,7 @@ vector<Point> convexHull(vector<Point> contour){
     ch.push_back(tmp[i]);
     n++;
   }
-
+  
   return ch;
 }
+

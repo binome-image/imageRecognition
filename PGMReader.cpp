@@ -45,13 +45,16 @@ int main(int argc, char** argv)
   // CALCULUS
   vector<Point> contour = borderExtraction(set2d);
   Point bar = barycentre(set2d);
+  /*for(int i=0; i<(contour.size()); i++){
+    cout << contour[i] << endl;
+  }*/
   vector<Point> ch = convexHull(contour);
 
   // SIGNATURE
-  cout << bar<< endl;
+  //cout << "bar " << bar<< endl;
   cout << ((float) contour.size() / sqrt((float) set2d.size())) << endl;
   cout << distFarthestPoint(set2d, bar) /  sqrt((float) set2d.size())<< endl;
-  cout << ((float) ch.size())/(float) contour.size() << endl; 
+  cout << ((float) ch.size()) << endl; 
 
   displayEps(set2d, contour, ch, bar, image);
   return 0;

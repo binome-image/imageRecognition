@@ -62,15 +62,25 @@ vector<Point> borderExtraction(DigitalSet set2d){
   //border extraction
   Point pin = *set2d.begin();
   Point pout = pin;
-  Point pp;
+  Point pp, tmp;
   vector<Point> contour;
 
 
   pout[1]++;
-  while (set2d(pout)) {
-    pin[1]++;
-    pout[1]++;
-    }
+  int maxH = set2d.domain().upperBound()[1];
+  int maxW = set2d.domain().upperBound()[0];
+  while(pout[1] <= maxH) {
+	while (pout[1] <= maxH && set2d(pout)) {
+	pout[1]++;
+	}
+  	tmp = pout;
+  	while (pout[1] <= maxH && !set2d(pout)) {
+	pout[1]++;
+	}
+  }
+  pout = tmp;
+  pin = tmp;
+  pin[1]--;
   contour.push_back(pin);
   pout[1]--;
   pout[0]++;
@@ -82,9 +92,10 @@ vector<Point> borderExtraction(DigitalSet set2d){
   while( contour[0] != pout && c < 100000){
     c++;
     pp = nextpoint(pin - pout);
-    while(not(set2d(pout + pp)) && c < 100000){
+    while( (pout+pp)[0] > maxW || (pout+pp)[1] > maxH || not(set2d(pout + pp)) && c < 100000){
       c++;
       pp = nextpoint(pp);
+      if(pp == pin - pout) break;
     }
     //cout << " -- vers : " << pp << endl;
 
