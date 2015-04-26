@@ -2,17 +2,18 @@
 
 rm -f resultat_cat.dat
 rm -f resultat_liste.dat
-echo "resultat image" >> resultat_cat.dat
-echo "resultat image" >> resultat_liste.dat
-
+echo "resultat image" >> resultat_cat_ind1_acc.dat
+echo "resultat image" >> resultat_liste_ind1_acc.dat
+numero=1
 for entree in `ls database/`;do
+	
 	echo $entree
 	min=0
 	max=0
 		for exemple in `ls database/$entree/`;do
 		echo $exemple
 		res=$(./build/PGMReader database/$entree/$exemple)
-		echo $exemple $res >> resultat_liste.dat
+		echo $exemple $res >> resultat_liste_ind1_acc.dat
 			st1=`echo "$min == 0" | bc`
 			if [  "$st1" -eq "1" ]; then
 				min=`echo $res`
@@ -27,7 +28,8 @@ for entree in `ls database/`;do
 				max=`echo $res`
 			fi
 		done
-	echo $entree $min $max>> resultat_cat.dat
+	echo $numero $entree $min $max>> resultat_cat_ind1_acc.dat
+	numero=`echo "$numero+1" | bc`
 done
 
 
