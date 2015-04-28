@@ -107,4 +107,18 @@ vector<Point> borderExtraction(DigitalSet set2d){
 }
 
 
+double indicatorMaxSegment(vector<Point> ch){
+	int n = ch.size();
+	double maxseg = (ch[n-1] - ch[0]).norm();
+	double totallength = maxseg;
+	for(int i = 0; i < n-1; i++){
+		double l = (ch[i+1] - ch[i]).norm();
+		totallength += l;
+		if (maxseg < l) {maxseg = l;}
+		//cout << l << " "<< maxseg << " " << totallength << endl;
+	}
+	return (maxseg/totallength);
+}
+
+
 
