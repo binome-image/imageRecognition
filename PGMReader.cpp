@@ -63,10 +63,12 @@ int main(int argc, char** argv)
   // SIGNATURE
   //cout << "bar " << bar<< endl;
   cout << ((float) contour.size() / sqrt((float) set2d.size())) << endl;
-  cout << distFarthestPoint(set2d, bar) /  sqrt((float) set2d.size())<< endl;
-  cout << ((float) ch.size()) << endl; 
+  //cout << distFarthestPoint(set2d, bar) /  sqrt((float) set2d.size())<< endl;
+  //cout << ((float) ch.size()) << endl; 
+
 
   displayEps(set2d, border, contour, ch, bar, image);
+
   return 0;
 }
 
