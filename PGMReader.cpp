@@ -44,27 +44,30 @@ int main(int argc, char** argv)
   SetFromImage<DigitalSet>::append<Image>(set2d, image, 0, 255);
 
   // CALCULUS
+  // FIRST : EXTRACT MAIN CONNECTED COMPONANT
   Object8_4 object(dt8_4, set2d);
   vector<Object8_4> cc;
-  back_insert_iterator<vector<Object8_4>>::iterator it(cc);
+  back_insert_iterator<vector<Object8_4> > it(cc);
   object.writeComponents(it);
-  //Similarly, Object4_8 and dt4_8 exist if you want to change
-  //connectivity
-  vector<Point> contour = borderExtraction(set2d);
-  Point bar = barycentre(set2d);
-  /*for(int i=0; i<(contour.size()); i++){
-    cout << contour[i] << endl;
-  }*/
+  int maxsize = 0, rank = 0;
+  for(int i=0; i< cc.size(); i++){
+  	if(cc[i].size() > maxsize) { maxsize = cc[i].size(); rank = i; }
+  }
+  Object8_4 mccObject = cc[rank];
+  DigitalSet mcc = mccObject.pointSet();
+
+  // SECOND : COMPUTE SIGNIFICANT SETS
+  vector<Point> contour = borderExtraction(mcc);
+  Point bar = barycentre(mcc);
   vector<Point> ch = convexHull(contour);
-  
-  DigitalSet border = object.border().pointSet();
-  cout << border << endl << set2d << endl;
+  DigitalSet border = mccObject.border().pointSet();
+
   
   // SIGNATURE
   //cout << "bar " << bar<< endl;
   cout << ((float) contour.size() / sqrt((float) set2d.size())) << endl;
-  //cout << distFarthestPoint(set2d, bar) /  sqrt((float) set2d.size())<< endl;
-  //cout << ((float) ch.size()) << endl; 
+  cout << distFarthestPoint(set2d, bar) /  sqrt((float) set2d.size())<< endl;
+  cout << ((float) ch.size()) << endl; 
 
 
   displayEps(set2d, border, contour, ch, bar, image);
@@ -86,7 +89,7 @@ void displayEps(DigitalSet set2d, DigitalSet border,
   board << set2d
         <<image.domain()
         << CustomStyle( bar.className(), new CustomColors( red, red ) );
-  /*for(int i=0; i<(contour.size()); i++){
+  for(int i=0; i<(contour.size()); i++){
     board << contour[i];  
   }  
   board << CustomStyle( bar.className(), new CustomColors( blue, blue ) ); 
@@ -96,12 +99,12 @@ void displayEps(DigitalSet set2d, DigitalSet border,
   }
   for(int i=0; i<(ch.size()-1); i++){
     board.drawLine(ch[i][0], ch[i][1], ch[i+1][0], ch[i+1][1]);
-  }*/
+  }
   //board << CustomStyle( bar.className(), new CustomColors( green,green ) );
-  for(DigitalSet::ConstIterator it = border.begin(), itend = border.end();
+  /*for(DigitalSet::ConstIterator it = border.begin(), itend = border.end();
       it != itend; ++it){
  	 board << *it;
-  }
+  }*/
   board.saveEPS("hop-set.eps");
 }
 
