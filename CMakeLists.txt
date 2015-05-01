@@ -21,7 +21,7 @@ LINK_DIRECTORIES(${DGTAL_LIBRARY_DIRS})
 
 SET(SRCs
 
-  PGMReader)
+  main)
 
 
 
