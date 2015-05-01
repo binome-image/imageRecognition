@@ -27,31 +27,26 @@ void displayEps(DigitalSet set2d, DigitalSet border,
                 Image image );
 
 int main(int argc, char** argv)
-{
-
-  if(argc < 2){
-    cout << "need input pgm picture" << endl;
-    return -1;
-  }
-  std::string filename = argv[1];
-  //Image type (image of unsigned int)
-  typedef ImageContainerBySTLVector< Domain, unsigned int > Image;
-  //We read the PGM file
-  Image image = PGMReader<Image>::importPGM(filename);
-  //trace.info() << "Image read :"<< image <<std::endl;
-  //We convert pixels in ]0,255] into a digital set
-  DigitalSet set2d( image.domain() );
-  SetFromImage<DigitalSet>::append<Image>(set2d, image, 0, 255);
-
-  // CALCULUS
-  // FIRST : EXTRACT MAIN CONNECTED COMPONANT
-  Object8_4 object(dt8_4, set2d);
-  vector<Object8_4> cc;
-  back_insert_iterator<vector<Object8_4> > it(cc);
-  object.writeComponents(it);
-  int maxsize = 0, rank = 0;
-  for(int i=0; i< cc.size(); i++){
-  	if(cc[i].size() > maxsize) { maxsize = cc[i].size(); rank = i; }
+{ 
+  std::string filename = argv[argc-1];
+  	//Image type (image of unsigned int)
+  	typedef ImageContainerBySTLVector< Domain, unsigned int > Image;
+  	//We read the PGM file
+  	Image image = PGMReader<Image>::importPGM(filename);
+  	//trace.info() << "Image read :"<< image <<std::endl;
+  	//We convert pixels in ]0,255] into a digital set
+  	DigitalSet set2d( image.domain() );
+  	SetFromImage<DigitalSet>::append<Image>(set2d, image, 0, 255);
+	
+  	// CALCULUS
+  	// FIRST : EXTRACT MAIN CONNECTED COMPONANT
+  	Object8_4 object(dt8_4, set2d);
+  	vector<Object8_4> cc;
+  	back_insert_iterator<vector<Object8_4> > it(cc);
+  	object.writeComponents(it);
+  	int maxsize = 0, rank = 0;
+  	for(int i=0; i< cc.size(); i++){
+  		if(cc[i].size() > maxsize) { maxsize = cc[i].size(); rank = i; }
   }
   Object8_4 mccObject = cc[rank];
   DigitalSet mcc = mccObject.pointSet();
@@ -62,18 +57,17 @@ int main(int argc, char** argv)
   vector<Point> ch = convexHull(contour);
   DigitalSet border = mccObject.border().pointSet();
 
-  
-  // SIGNATURE
-  //cout << "bar " << bar<< endl;
-  cout << ((float) contour.size() / sqrt((float) set2d.size())) << endl;
-  cout << distFarthestPoint(set2d, bar) /  sqrt((float) set2d.size())<< endl;
-  cout << ((float) ch.size()) << endl; 
-  cout << indicatorMaxSegment(ch) << endl;
-
-
-  //displayEps(set2d, border, contour, ch, bar, image);
-
-  return 0;
+  if (string(argv[1]) =="-ind1")
+  {cout << ((float) contour.size() / sqrt((float) set2d.size())) << endl;}
+  if (string(argv[1]) =="-ind2")
+  {cout <<argv[1]<< distFarthestPoint(set2d, bar) /  sqrt((float) set2d.size())<< endl;}
+  if (string(argv[1]) == "-ind3")
+  {cout << ((float) ch.size()) << endl;}
+  if (string(argv[1]) == "-ind4")
+  {cout << indicatorMaxSegment(ch) << endl;}
+  if (string(argv[2]) == "-disp")
+  {displayEps(set2d, border, contour, ch, bar, image);}
+  	
 }
 
 
