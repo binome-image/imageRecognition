@@ -21,7 +21,10 @@ LINK_DIRECTORIES(${DGTAL_LIBRARY_DIRS})
 
 SET(SRCs
 
-  main)
+  main 
+  imgAddNoise 
+  imgRotate 
+  imgScale )
 
 
 
