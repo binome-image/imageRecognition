@@ -1,0 +1,75 @@
+\documentclass{report}
+
+\title{Rapport Stage L3}
+\author{Patrice Coudert}
+\usepackage{xcolor}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage[nottoc, notlof, notlot]{tocbibind}
+\usepackage{amsthm}
+\usepackage{stmaryrd} 
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{lmodern}
+\usepackage{amsmath,amsfonts}
+\newcommand{\TextSoulign}[3]{\emph{\textcolor{#1}{\underline{#2\textcolor{black}{#3}}}}}
+\newtheorem{lemme}{Lemme}
+\newtheorem{theoreme}{Théorème}    
+\newtheorem{mydef}{Définition}
+\newtheorem{prop}{Propriété}    
+\newtheorem{res}{Résultat}     
+\usepackage{tkz-graph}
+\usetikzlibrary{trees,decorations,decorations.pathmorphing,decorations.pathreplacing}                                      
+\begin{document}
+
+\begin{titlepage}
+	\begin{center}
+		\vspace{3.5cm}
+		\huge{Rapport du Projet d'image}
+		\vspace{1cm}
+		
+		\Huge{\TextSoulign{red}{}{Reconnaissance et indexation}}
+
+		\Huge{\TextSoulign{red}{}{de forme}}
+		\vspace{5cm}
+		
+		\LARGE{Patrice Coudert et Frédéric Lang}
+		\vspace{3.5cm}
+		
+	\end{center}
+	
+	
+	
+\end{titlepage}
+
+\tableofcontents
+
+\chapter*{Introduction et structure du rapport}
+
+Le principe du projet est de créer une signature. Pour cela nous avons créé un certains nombre d'indicateurs
+que nous allons tout d'abord vous présenter. On en profitera pour s'interesser à leur robustesse vis à vis de l'occlusion, du bruit, ...
+Ces propriétés seront étudiés à la fois théoriquement et en pratique.
+
+Pour les résultats pratiques, les scripts bash et les graphiques sont présent dans le dossier pour reporduire ces tests. Même si les graphiques
+ne seront pas tous dans la rapport, il sont présent dans le dossier résultat. Les scripts bash servent à reproduire les test que nous 
+avons effectués.
+
+La suite expliquera comment nous utilisons ces indicateurs pour répondre aux questions. Nous proposons deux options: la première renverra la classe
+la plus probable et la deuxième renverra les k images les plus proches.
+
+\section*{Explications du programme}
+
+Nous allons commencer expliquer comment utiliser notre programme. Le programme s'appelle $main$. Il prend deux options. La première est
+le mode du programme. Les différents options sont:
+
+\noindent-$-help$: qui affiche les options et les explications de ce qu'elles font.
+\noindent-$-class$: qui renvoie la classe la plus probable et la probabilité que l'image soit dans cette classe.
+\noindent-$-simil n$: qui renvoie les $n$ images les plus proches au sens de notre distance.
+\noindent-$-indn$: qui renvoie l'indicateur $n$ pour l'image en entrée.
+\noindent-$-disp$: qui crée un fichier $image.eps$ qui 
+
+
+\end{document}
+
