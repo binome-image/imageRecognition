@@ -24,7 +24,7 @@ Point p0 = Point(1,1);
 
 bool comp(Point x, Point y){
   if (orientation(p0, x, y) == 0) {
-    return ( (x-p0).norm() <= (y-p0).norm() );
+    return ( (x-p0).norm() < (y-p0).norm() );
   }
   else return (orientation(p0, x, y) == -1);
 }
@@ -42,6 +42,7 @@ vector<Point> convexHull(vector<Point> contour){
   p0 = bottomleft;
   contour.erase(mem);
   vector<Point> tmp(contour);
+  cout << "size " << tmp.size() << " " << tmp.max_size() << endl;
   sort(tmp.begin(), tmp.end(), comp);
 
   vector<Point> ch(3);
