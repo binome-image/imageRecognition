@@ -89,10 +89,10 @@ vector<Point> borderExtraction(DigitalSet set2d){
     pout[0]--;
   }
   int c = 0;
-  while( contour[0] != pout && c < 100000){
+  while( contour[0] != pout && c < 1000000){
     c++;
     pp = nextpoint(pin - pout);
-    while( (pout+pp)[0] > maxW || (pout+pp)[1] > maxH || not(set2d(pout + pp)) && c < 100000){
+    while( ((pout+pp)[0] > maxW || (pout+pp)[1] > maxH || not(set2d(pout + pp))) && c < 1000000){
       c++;
       pp = nextpoint(pp);
       if(pp == pin - pout) break;

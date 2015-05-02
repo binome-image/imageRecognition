@@ -19,7 +19,7 @@ using namespace DGtal;
 using namespace DGtal::Z2i; //We'll only consider Z² digital space on
           //32bit integers
 
-Point p0;
+Point p0 = Point(1,1);
 
 
 bool comp(Point x, Point y){

@@ -29,13 +29,13 @@ void displayEps(DigitalSet set2d, DigitalSet border,
 int main(int argc, char** argv)
 { 
 
-  /*Point myints[] = {Point(2,1),Point(3,2), Point(4,5), Point(1,1)};
-  std::vector<Point> myvector (myints, myints+4);               // 32 71 12 45 26 80 53 33
+  /*Point myints[] = {Point(2,1),Point(4,5), Point(3,2), Point(4,5), Point(1,1)};
+  std::vector<Point> myvector (myints, myints+5);               // 32 71 12 45 26 80 53 33
   // using default comparison (operator <):
-  std::sort (myvector.begin(), myvector.end(), comp);   */
-
+  std::sort (myvector.begin(), myvector.end(), comp); 
   for(int i=0;i<myvector.size();i++) {cout << myvector[i] << " ";}
-    cout << endl;
+    cout << endl; */
+    
   std::string filename = argv[argc-1];
   	//Image type (image of unsigned int)
   	typedef ImageContainerBySTLVector< Domain, unsigned int > Image;
@@ -48,15 +48,15 @@ int main(int argc, char** argv)
 	
   	// CALCULUS
   	// FIRST : EXTRACT MAIN CONNECTED COMPONANT
-  	Object8_4 object(dt8_4, set2d);
-  	vector<Object8_4> cc;
-  	back_insert_iterator<vector<Object8_4> > it(cc);
+  	Object4_8 object(dt4_8, set2d);
+  	vector<Object4_8> cc;
+  	back_insert_iterator<vector<Object4_8> > it(cc);
   	object.writeComponents(it);
   	int maxsize = 0, rank = 0;
   	for(int i=0; i< cc.size(); i++){
   		if(cc[i].size() > maxsize) { maxsize = cc[i].size(); rank = i; }
   }
-  Object8_4 mccObject = cc[rank];
+  Object4_8 mccObject = cc[rank];
   DigitalSet mcc = mccObject.pointSet();
 
   // SECOND : COMPUTE SIGNIFICANT SETS
@@ -74,7 +74,7 @@ int main(int argc, char** argv)
   if (string(argv[1]) == "-ind4")
   {cout << indicatorMaxSegment(ch) << endl;}
   if (string(argv[2]) == "-disp")
-  {displayEps(set2d, border, contour, ch, bar, image);}
+  {displayEps(set2d, border, contour, contour, bar, image);}
   	
 }
 
@@ -96,13 +96,13 @@ void displayEps(DigitalSet set2d, DigitalSet border,
     board << contour[i];  
   }  
   board << CustomStyle( bar.className(), new CustomColors( blue, blue ) ); 
-  for(int i=0; i<(ch.size()); i++){
+  /*for(int i=0; i<(ch.size()); i++){
     board << ch[i];
     //cout << ch[i] << endl;
   }
   for(int i=0; i<(ch.size()-1); i++){
     board.drawLine(ch[i][0], ch[i][1], ch[i+1][0], ch[i+1][1]);
-  }
+  }*/
   //board << CustomStyle( bar.className(), new CustomColors( green,green ) );
   /*for(DigitalSet::ConstIterator it = border.begin(), itend = border.end();
       it != itend; ++it){
