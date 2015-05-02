@@ -28,6 +28,14 @@ void displayEps(DigitalSet set2d, DigitalSet border,
 
 int main(int argc, char** argv)
 { 
+
+  /*Point myints[] = {Point(2,1),Point(3,2), Point(4,5), Point(1,1)};
+  std::vector<Point> myvector (myints, myints+4);               // 32 71 12 45 26 80 53 33
+  // using default comparison (operator <):
+  std::sort (myvector.begin(), myvector.end(), comp);   */
+
+  for(int i=0;i<myvector.size();i++) {cout << myvector[i] << " ";}
+    cout << endl;
   std::string filename = argv[argc-1];
   	//Image type (image of unsigned int)
   	typedef ImageContainerBySTLVector< Domain, unsigned int > Image;
