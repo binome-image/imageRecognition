@@ -6,4 +6,4 @@ using namespace DGtal::Z2i; //We'll only consider Z² digital space on
 typedef ImageSelector < Z2i::Domain,uint>::Type Image;
 
 
-void naiveDistance(Image image);
+void naiveDistance(Image image, int nbcmp);

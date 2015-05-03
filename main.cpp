@@ -13,6 +13,7 @@
 #include "utils.h"
 #include "convexhull.h"
 #include "distancetransform.h"
+#include "naivedistance.h"
 
 using namespace std;
 using namespace DGtal;
@@ -85,7 +86,8 @@ int main(int argc, char** argv)
   {displayEps(set2d, border, contour, ch, bar, centreins, image);}
   if (argc >=3 && string(argv[2]) == "-dispDT")
   { distancetransformShow(image);}
-  	
+  if (string(argv[1]) == "-ND")
+  { naiveDistance(image, 10);}  	
   return 0;
 }
 

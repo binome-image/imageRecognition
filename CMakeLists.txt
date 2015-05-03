@@ -21,15 +21,12 @@ LINK_DIRECTORIES(${DGTAL_LIBRARY_DIRS})
 
 SET(SRCs
 
-  main 
-  imgAddNoise 
-  imgRotate 
-  imgScale )
+  main  )
 
 
 
 
 FOREACH(FILE ${SRCs})
-  add_executable(${FILE} ${FILE} distancetransform convexhull utils)
+  add_executable(${FILE} ${FILE} naivedistance distancetransform convexhull utils)
   target_link_libraries (${FILE} ${DGTAL_LIBRARIES}  ${Boost_LIBRAIRIES}  ${Boost_PROGRAM_OPTIONS_LIBRARY})
 ENDFOREACH(FILE)
