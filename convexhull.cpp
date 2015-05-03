@@ -99,16 +99,19 @@ double indicatorVarSegment(vector<Point> ch){
 double indicatorAngle(vector<Point> ch){
   int n = ch.size();
   vector<double> angles(n);
-  for(int i = 0; i < n; i++){
-    double o = orientation(ch[i],ch[i+1%n],ch[i+2%n]);
-    o = o/(ch[i+1%n] - ch[i]).norm();
-    o = o/(ch[i+2%n] - ch[i+1%n]).norm();
-    angles[i] = -asin(o);
-  }
   double pi = 3.14159265;
-  double moy = pi/(3*n);
+  for(int i = 0; i < n; i++){
+    Point u=ch[(i+1)%n] - ch[i];
+    Point v=ch[(i+2)%n] - ch[(i+1)%n];
+    double o = u[1]*v[1] + u[0]*v[0];
+    o = o/u.norm();
+    o = o/v.norm();
+    angles[i] = (acos(o));
+  }
+  
+  double moy = pi/n;
   int r =0;
-  for(int i = 0; i < n-1; i++){
+  for(int i = 0; i < n; i++){
     if(angles[i] > moy) { r++; }
     //cout << angles[i] << " " << moy << endl;
   }
