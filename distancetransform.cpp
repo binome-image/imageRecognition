@@ -78,7 +78,7 @@ vector<double> distancetransform(Image image, Point barycentre){
   result.push_back( sup[0][1]);
   result.push_back( (double) maxv1 );
   result.push_back( (double) dtL2(barycentre) );
-  result.push_back( d );
+  result.push_back( dist );
 
 
   return result;
