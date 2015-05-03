@@ -80,9 +80,32 @@ visuels.
 
 Nous avons fait le choix de nous intéresser qu'à la composante connexe principale c'est à dire de plus grande taille.
 Les composantes connexes sont calculées en topologie 4.
-On donne un exemple du changement d'image qu'impose notre choix sur devie1-9.pgm. 
+On donne un exemple du changement d'image qu'impose notre choix sur $devie1-9.pgm$.
+La composante principale est en noir et les commposantes suprimés sont en jaune.
+La raison de ce choix est double.
+Premièrement on enlève des taches qui ne sont pas très caractéristiques de l'image. 
+En effet ces taches peuvent résulter du bruit de notre image.
+Deuxièment nos fonctions qui calcule le contour et l'envelloppe convexe ne sont pas resistant à ces problématiques.
+On discute des améliorations possibles liés à ceci dans le section limitation et améliiorations possibles.
 
-\section{PERIMETRE} : Cet indicateur est lié à la longueur du contour de l'image. Il est destiné à différencier les formes très courbés de celle qui se rapproche plus d'un disque, et de ce fait on un rapport périmètre/surface assez faible. Il est calculé en extrayant le contour de la forme avec la fonction \textbf{contour} inplémentée dans le fichier \textbf{utils.cpp}. Le contour obtenu correspond a une topologie 4-8.
+%\includegraphics[scale=0.3]{device1-9-seulcc.pgm}
+
+L'image ci-dessous est le résultat de notre algorithme pour l'image $guitar-1.pgm$.
+Le contour de l'image est en rouge. Celui-ci est pris en topologie 4. 
+Le contour de l'envellope convexe appraît en bleu. Le barycentre apparaît en bleu et le point
+où la distance au bord est maximal en vert.
+Ces résultats sont obtenus en ajoutant l'option $-disp$ à n'importe quel image. 
+%\includegraphics[scale=0.3]{guitar-1-exemple.pgm}
+\section{PERIMETRE} Cet indicateur mesure la longueur du contour de l'image. Il est destiné à différencier les formes très courbés (tel lizzard) de celle qui se rapproche plus d'un disque (tel apple). Il est calculé en extrayant le contour de la forme avec la fonction $contour$ inplémentée dans le fichier $utils.cpp$. Le contour obtenu correspond a une topologie 4.
+\subsection{Resistance au bruit}
+Le contour est par nature assez sensible au bruit. 
+En effet, le bruit se situant majoritairement au bord, c'est le contour qui est le premier modifié.
+POur limiter ce problème, on ne garde que la plus grande composante connexe en topologie 4. Ainsi, même
+
+
+L'orentation de notre figure n'a que très peu d'impact sur notre contour. 
+Lorque la taille de l'image est assez grande, tourner l'image conserve la taille du contour même si à certain endroit particuliers,
+
 \section{DISQUECIRCONS} : A Partir de la position du barycentre et de la distance du point le plus éloigné de celui-ci, calculé par les fonctions \textbf{barycentre} et \textbf{distFarthestPoint} dans \textbf{utils.cpp}, on calcule le rapport entre la surface du disque circonscrit à la forme et la surface de de la forme.
 \section{NBSEG} : Le nombre de segment qui délimitent l'enveloppe convexe de l'image. Les points qui relient ces segments sont calculé par l'algorithme de Graham inplémenté par la fonction \textbf{convexHull} dans \textbf{convexhull.cpp}. Pour la première étape de l'algorithme où sont triés les points selon un ordre lié à un point \textbf{p0}, le tri n'a d'abord pas fonctionné car des points étaient alignés avec \textbf{p0}, mais ce problème a été corrigé en prenant en compte la distance avec celui-ci.
 % todo : verifier algo

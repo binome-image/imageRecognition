@@ -1,4 +1,3 @@
-///////////////////////////////////////////////////////////////////////////////
 #include <iostream>
 #include <vector>
 #include <utility>
@@ -14,7 +13,6 @@
 #include "utils.h"
 #include "convexhull.h"
 #include "distancetransform.h"
-///////////////////////////////////////////////////////////////////////////////
 
 using namespace std;
 using namespace DGtal;
@@ -62,8 +60,6 @@ int main(int argc, char** argv)
   Point centreins;
   centreins[0] = (int) DTresults[1];
   centreins[1] = (int) DTresults[2];
-
-  //cout << "centre inscrit " << centreins << endl;
 
   if (string(argv[1]) =="-ind1") // PERIMETRE
   {cout << ((double) contour.size() / sqrt((double) set2d.size())) << endl;}

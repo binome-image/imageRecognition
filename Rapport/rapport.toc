@@ -1,6 +1,7 @@
 \select@language {french}
 \contentsline {chapter}{\numberline {1}D\IeC {\'e}tails des indicateurs}{3}
 \contentsline {section}{\numberline {1.1}PERIMETRE}{3}
-\contentsline {section}{\numberline {1.2}DISQUECIRCONS}{3}
+\contentsline {subsection}{\numberline {1.1.1}Resistance au bruit}{4}
+\contentsline {section}{\numberline {1.2}DISQUECIRCONS}{4}
 \contentsline {section}{\numberline {1.3}NBSEG}{4}
 \contentsline {section}{\numberline {1.4}MAXSEG}{4}
