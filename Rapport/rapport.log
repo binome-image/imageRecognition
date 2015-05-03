@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2015.5.2)  3 MAY 2015 16:02
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2015.5.2)  3 MAY 2015 16:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -898,20 +898,20 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 33.
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./rapport.toc
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 3.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 3.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 3.
-)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./rapport.toc)
 \tf@toc=\write4
 \openout4 = `rapport.toc'.
 
  [1
 
-] [2
+]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 64.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 64.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 64.
+ [2
 
 ]
 Chapitre 1.
@@ -926,15 +926,15 @@ Here is how much of TeX's memory you used:
  67260 words of font info for 64 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  56i,5n,55p,555b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/sha
-re/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/
-lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/sha
+re/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-m
+athsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}</usr/share/texmf/
 fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12
 .pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts
 /type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></
 usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/
 public/lm/lmsy10.pfb>
-Output written on rapport.pdf (5 pages, 141135 bytes).
+Output written on rapport.pdf (5 pages, 138589 bytes).
 PDF statistics:
  57 PDF objects out of 1000 (max. 8388607)
  42 compressed objects within 1 object stream
