@@ -91,6 +91,8 @@ double indicatorVarSegment(vector<Point> ch){
     var += pow((ch[i+1] - ch[i]).norm() - moy,2);
   }
   var = var/n;
+  var = sqrt(var);
+  var = var / n;
   return var;
 }
 
@@ -108,7 +110,7 @@ double indicatorAngle(vector<Point> ch){
   int r =0;
   for(int i = 0; i < n-1; i++){
     if(angles[i] > moy) { r++; }
-    cout << angles[i] << " " << moy << endl;
+    //cout << angles[i] << " " << moy << endl;
   }
   return (double) r;
 }

@@ -58,26 +58,37 @@ int main(int argc, char** argv)
   Point bar = barycentre(mcc);
   vector<Point> ch = convexHull(contour);
   DigitalSet border = mccObject.border().pointSet();
-  vector<double> DTresults = distancetransform(image);
+  vector<double> DTresults = distancetransform(image, bar);
   Point centreins;
   centreins[0] = (int) DTresults[1];
   centreins[1] = (int) DTresults[2];
-  cout << "centre inscrit " << centreins << endl;
+
+  //cout << "centre inscrit " << centreins << endl;
 
   if (string(argv[1]) =="-ind1") // PERIMETRE
-  {cout << ((float) contour.size() / sqrt((float) set2d.size())) << endl;}
+  {cout << ((double) contour.size() / sqrt((double) set2d.size())) << endl;}
   if (string(argv[1]) =="-ind2") // DISQUECIRCONS
-  {cout << distFarthestPoint(set2d, bar) /  sqrt((float) set2d.size())<< endl;}
+  {cout << distFarthestPoint(set2d, bar) /  sqrt((double) set2d.size())<< endl;}
   if (string(argv[1]) == "-ind3") // NBSEG
-  {cout << ((float) ch.size()) << endl;}
+  {cout << ((double) ch.size()) << endl;}
   if (string(argv[1]) == "-ind4") // MAXSEG
   {cout << indicatorMaxSegment(ch) << endl;}
   if (string(argv[1]) == "-ind5") // VARSEG
   {cout << indicatorVarSegment(ch) << endl;}
   if (string(argv[1]) == "-ind6") // ANGLESEG
   {cout << indicatorAngle(ch) << endl;}
+  if (string(argv[1]) == "-ind7") // MAXDTL2
+  { cout << DTresults[0] / sqrt((double) set2d.size()) << endl; }
+  if (string(argv[1]) == "-ind8") // MAXDTL1
+  { cout << DTresults[3] / sqrt((double) set2d.size()) << endl; }  
+  if (string(argv[1]) == "-ind9") // BARYCENTRE-DTL2
+  { cout << DTresults[4] / sqrt((double) set2d.size()) << endl; }
+  if (string(argv[1]) == "-ind10") // BAR-CENTREINSCRIT
+  { cout << DTresults[5] / sqrt((double) set2d.size()) << endl; }
   if (argc >=3 && string(argv[2]) == "-disp")
   {displayEps(set2d, border, contour, ch, bar, centreins, image);}
+  if (argc >=3 && string(argv[2]) == "-dispDT")
+  { distancetransformShow(image);}
   	
   return 0;
 }
@@ -90,8 +101,8 @@ void displayEps(DigitalSet set2d, DigitalSet border,
     //We display the set
 
   Color red( 255, 0, 0 );
-  Color blue( 255, 255, 0 );
-  Color green(0,0,200);
+  Color blue( 0, 0, 255 );
+  Color green(0,255,0);
   Board2D board;
   board << set2d
         <<image.domain()
@@ -108,7 +119,7 @@ void displayEps(DigitalSet set2d, DigitalSet border,
   for(int i=0; i<(ch.size()-1); i++){
     board.drawLine(ch[i][0], ch[i][1], ch[i+1][0], ch[i+1][1]);
   }
-  board << CustomStyle( bar.className(), new CustomColors( green,green ) );
+  board << CustomStyle( bar.className(), new CustomColors( green, green ) );
   board << centreins;
   /*for(DigitalSet::ConstIterator it = border.begin(), itend = border.end();
       it != itend; ++it){

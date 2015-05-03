@@ -27,7 +27,7 @@ using namespace DGtal::Z2i; //We'll only consider Z² digital space on
           //32bit integers
 typedef ImageSelector < Z2i::Domain,uint>::Type Image;
 
-vector<double> distancetransform(Image image){
+vector<double> distancetransform(Image image, Point barycentre){
 	typedef functors::SimpleThresholdForegroundPredicate<Image> PointPredicate;
   PointPredicate predicate(image,0);
   //! [DTPredicate]  
@@ -50,11 +50,21 @@ vector<double> distancetransform(Image image){
 			sup.clear();
 			sup.push_back(*it);
 			maxv2 = v;
+      //cout << "maxv2 " << maxv2 << " at " << *it << endl;
 		}
 		else if(v==maxv2){
 			sup.push_back(*it);
+      //cout << "more sup for " << maxv2 << endl;
 		}
 	}
+
+  // distance moyenne entre le barycentre et les points atteignant maxv2 
+  // ( a priori un seul point )
+  double dist = 0;
+  for(int i=0; i<sup.size(); i++){
+    dist += (sup[i]-barycentre).norm();
+  }
+  dist = dist/ sup.size();
 
  
   DTL1::Value maxv1=0;
@@ -63,15 +73,21 @@ vector<double> distancetransform(Image image){
     if ( (*it) > maxv1)  maxv1 = (*it);
 
   vector<double> result;
-  result.push_back( (double) maxv1 / (double) maxv2 );
+  result.push_back( (double) maxv2 );
   result.push_back( sup[0][0]);
   result.push_back( sup[0][1]);
+  result.push_back( (double) maxv1 );
+  result.push_back( (double) dtL2(barycentre) );
+  result.push_back( d );
 
 
   return result;
 }
 
-void distancetransformExample(Image image) {
+
+/* Fonction adapté de l'exemple de la librairie DGtal distancetransform2D.cpp
+situé dans le dossier examples/geometry/volumes/distance/                   */
+void distancetransformShow(Image image) {
 	
   trace.beginBlock ( "Example distancetransform2D" );
 
