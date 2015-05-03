@@ -6,3 +6,8 @@ using namespace DGtal::Z2i; //We'll only consider Z² digital space on
 bool comp(Point x, Point y);
 
 vector<Point> convexHull(vector<Point> contour);
+
+
+double indicatorMaxSegment(vector<Point> ch);
+
+double indicatorVarSegment(vector<Point> ch);

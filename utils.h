@@ -25,5 +25,3 @@ double distFarthestPoint(DigitalSet forme, Point p);
 
 vector<Point> borderExtraction(DigitalSet set2d);
 
-double indicatorMaxSegment(vector<Point> ch);
-

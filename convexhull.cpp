@@ -64,3 +64,32 @@ vector<Point> convexHull(vector<Point> contour){
   return ch;
 }
 
+
+double indicatorMaxSegment(vector<Point> ch){
+  int n = ch.size();
+  double maxseg = (ch[n-1] - ch[0]).norm();
+  double totallength = maxseg;
+  for(int i = 0; i < n-1; i++){
+    double l = (ch[i+1] - ch[i]).norm();
+    totallength += l;
+    if (maxseg < l) {maxseg = l;}
+    //cout << l << " "<< maxseg << " " << totallength << endl;
+  }
+  return (maxseg/totallength);
+}
+
+double indicatorVarSegment(vector<Point> ch){
+  int n = ch.size();
+  double moy = (ch[n-1] - ch[0]).norm();
+  for(int i = 0; i < n-1; i++){
+    moy += (ch[i+1] - ch[i]).norm();
+  }
+  moy = moy/n;
+  double var = pow((ch[n-1] - ch[0]).norm() - moy, 2);
+  for(int i = 0; i < n-1; i++){
+    var += pow((ch[i+1] - ch[i]).norm() - moy,2);
+  }
+  var = var/n;
+  return var;
+}
+
