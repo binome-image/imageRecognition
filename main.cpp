@@ -71,13 +71,13 @@ int main(int argc, char** argv)
   centreins[1] = (int) DTresults[2];
   cout << "centre inscrit " << centreins << endl;
 
-  if (string(argv[1]) =="-ind1")
+  if (string(argv[1]) =="-ind1") // PERIMETRE
   {cout << ((float) contour.size() / sqrt((float) set2d.size())) << endl;}
-  if (string(argv[1]) =="-ind2")
+  if (string(argv[1]) =="-ind2") // DISQUECIRCONS
   {cout <<argv[1]<< distFarthestPoint(set2d, bar) /  sqrt((float) set2d.size())<< endl;}
-  if (string(argv[1]) == "-ind3")
+  if (string(argv[1]) == "-ind3") // NBSEG
   {cout << ((float) ch.size()) << endl;}
-  if (string(argv[1]) == "-ind4")
+  if (string(argv[1]) == "-ind4") // MAXSEG
   {cout << indicatorMaxSegment(ch) << endl;}
   if (argc >=3 && string(argv[2]) == "-disp")
   {displayEps(set2d, border, contour, ch, bar, centreins, image);}

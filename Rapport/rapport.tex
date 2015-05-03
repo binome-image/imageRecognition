@@ -1,6 +1,6 @@
 \documentclass{report}
 
-\title{Rapport Stage L3}
+\title{Rapport Projet Image}
 \author{Patrice Coudert}
 \usepackage{xcolor}
 \usepackage[francais]{babel}
@@ -70,6 +70,17 @@ le mode du programme. Les différents options sont:
 \noindent-$-indn$: qui renvoie l'indicateur $n$ pour l'image en entrée.
 \noindent-$-disp$: qui crée un fichier $image.eps$ qui 
 
+
+\section{Détails des indicateurs}
+Nous avons choisis de construire nos indicateurs à partir d'éléments géométriques qu'on peut extraire de l'image. De cette manière, à partir de la sortie graphique du programme, la cohérence des indicateurs peut-être vérifiée visuellement, ou une valeur non concordante pour une image donnée avec le reste de sa classe peut être expliquée par une défaillance dans l'implémentation des algorithmes. Pour que nos indicateurs soient invariants par transformation linéaire, à chaque fois nous calculons un rapport avec la racine carrée de la surface de l'image, qui correspondrait à l'échelle de l'image. Ci-dessous sont présenté nos indicateurs :
+
+\begin{enumerate}
+\item PERIMETRE : Cet indicateur est lié à la longueur du contour de l'image. Il est destiné à différencier les formes très courbés de celle qui se rapproche plus d'un disque, et de ce fait on un rapport périmètre/surface assez faible. Il est calculé en extrayant le contour de la forme avec la fonction \textbf{contour} inplémentée dans le fichier \textbf{utils.cpp}. Le contour obtenu correspond a une topologie 4-8.
+\item DISQUECIRCONS : A Partir de la position du barycentre et de la distance du point le plus éloigné de celui-ci, calculé par les fonctions \textbf{barycentre} et \textbf{distFarthestPoint} dans \textbf{utils.cpp}, on calcule le rapport entre la surface du disque circonscrit à la forme et la surface de de la forme.
+\item NBSEG : Le nombre de segment qui délimitent l'enveloppe convexe de l'image. Les points qui relient ces segments sont calculé par l'algorithme de Graham inplémenté par la fonction \textbf{convexHull} dans \textbf{convexhull.cpp}. Pour la première étape de l'algorithme où sont triés les points selon un ordre lié à un point \textbf{p0}, le tri n'a d'abord pas fonctionné car des points étaient alignés avec \textbf{p0}, mais ce problème a été corrigé en prenant en compte la distance avec celui-ci.
+% todo : verifier algo
+\item MAXSEG : Cet indicateur mesure la taille du plus grand segment délimitant l'enveloppe convexe.
+\end{enumerate}
 
 \end{document}
 
