@@ -11,3 +11,5 @@ vector<Point> convexHull(vector<Point> contour);
 double indicatorMaxSegment(vector<Point> ch);
 
 double indicatorVarSegment(vector<Point> ch);
+
+double indicatorAngle(vector<Point> ch);

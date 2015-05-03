@@ -4,6 +4,7 @@
 #include <utility>
 #include <algorithm>
 #include <stack>
+#include <math.h>
 #include <DGtal/base/Common.h>
 #include <DGtal/io/boards/Board2D.h>
 #include <DGtal/helpers/StdDefs.h>
@@ -42,7 +43,7 @@ vector<Point> convexHull(vector<Point> contour){
   p0 = bottomleft;
   contour.erase(mem);
   vector<Point> tmp(contour);
-  cout << "size " << tmp.size() << " " << tmp.max_size() << endl;
+  //cout << "size " << tmp.size() << " " << tmp.max_size() << endl;
   sort(tmp.begin(), tmp.end(), comp);
 
   vector<Point> ch(3);
@@ -92,4 +93,24 @@ double indicatorVarSegment(vector<Point> ch){
   var = var/n;
   return var;
 }
+
+double indicatorAngle(vector<Point> ch){
+  int n = ch.size();
+  vector<double> angles(n);
+  for(int i = 0; i < n; i++){
+    double o = orientation(ch[i],ch[i+1%n],ch[i+2%n]);
+    o = o/(ch[i+1%n] - ch[i]).norm();
+    o = o/(ch[i+2%n] - ch[i+1%n]).norm();
+    angles[i] = -asin(o);
+  }
+  double pi = 3.14159265;
+  double moy = pi/(3*n);
+  int r =0;
+  for(int i = 0; i < n-1; i++){
+    if(angles[i] > moy) { r++; }
+    cout << angles[i] << " " << moy << endl;
+  }
+  return (double) r;
+}
+
 

@@ -74,6 +74,8 @@ int main(int argc, char** argv)
   {cout << indicatorMaxSegment(ch) << endl;}
   if (string(argv[1]) == "-ind5") // VARSEG
   {cout << indicatorVarSegment(ch) << endl;}
+  if (string(argv[1]) == "-ind6") // ANGLESEG
+  {cout << indicatorAngle(ch) << endl;}
   if (argc >=3 && string(argv[2]) == "-disp")
   {displayEps(set2d, border, contour, ch, bar, centreins, image);}
   	
