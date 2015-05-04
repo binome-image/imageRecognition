@@ -2,6 +2,7 @@
 #include <vector>
 #include <utility>
 #include <algorithm>
+#include <string>
 #include <stack>
 #include <DGtal/base/Common.h>
 #include <DGtal/io/boards/Board2D.h>
@@ -66,7 +67,7 @@ void naiveDistance(Image image, int nbcmp)
   signature[9] = DTresults[5] / sqrt((double) set2d.size());
 
   // FOURTH : GET RESULTS FROM DATABASE
-  int nb_ind_calc = 4; // nb d'indicateurs qui ont été calculés pour toute la DB
+  int nb_ind_calc = 5; // nb d'indicateurs qui ont été calculés pour toute la DB
   double results[70][15][nb_ind_calc];
   for(int k=0; k<nb_ind_calc; k++){
     string filename = "../resultat/resultat_liste_ind" + to_string(k+1) + ".dat";

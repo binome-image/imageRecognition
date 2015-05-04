@@ -85,7 +85,8 @@ int main(int argc, char** argv)
   if (argc >=3 && string(argv[2]) == "-disp")
   {displayEps(set2d, border, contour, ch, bar, centreins, image);}
   if (argc >=3 && string(argv[2]) == "-dispDT")
-  { distancetransformShow(image);}
+  { cout << "need to uncomment distancetransformShow(image); to work " << endl;}
+  //{ distancetransformShow(image);}
   if (string(argv[1]) == "-ND")
   { naiveDistance(image, 10);}  	
   return 0;
