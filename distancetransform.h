@@ -5,6 +5,6 @@ using namespace DGtal::Z2i; //We'll only consider Z² digital space on
 
 typedef ImageSelector < Z2i::Domain,uint>::Type Image;
 
-void distancetransformShow(Image image);
+//void distancetransformShow(Image image);
 
 vector<double> distancetransform(Image image, Point barycentre);

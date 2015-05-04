@@ -3,6 +3,10 @@ PROJECT(Helloworld)
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
+if(UNIX)
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=gnu++0x")
+endif()
+
 ### We need Boost Program Options library
 SET(Boost_USE_STATIC_LIBS   ON)
 SET(Boost_USE_MULTITHREADED ON)

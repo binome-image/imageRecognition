@@ -2,6 +2,7 @@
 #include <vector>
 #include <utility>
 #include <algorithm>
+#include <string>
 #include <stack>
 #include <DGtal/base/Common.h>
 #include <DGtal/io/boards/Board2D.h>
