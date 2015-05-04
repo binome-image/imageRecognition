@@ -88,7 +88,7 @@ int main(int argc, char** argv)
   { cout << "need to uncomment distancetransformShow(image); to work " << endl;}
   //{ distancetransformShow(image);}
   if (string(argv[1]) == "-ND")
-  { naiveDistance(image, 10);}  	
+  { naiveDistance(image, argv[2]);}
   return 0;
 }
 
