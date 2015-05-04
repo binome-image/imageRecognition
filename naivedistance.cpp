@@ -96,23 +96,27 @@ void naiveDistance(Image image, int nbcmp)
     for(int j=0; j<15; j++){
       double d = distance(nb_ind_calc, results[i][j], signature);
       if(d < best[nbcmp-1]) {
+        //cout << d << " better than " << best[nbcmp-1] << " at " <<i<<","<<j;
         if( d < best[0]) {
+          //cout << "and inserted front";
           best.insert(best.begin(), d);
           img.insert(img.begin(), make_pair(i,j));
         }
         for(int k=1; k<nbcmp; k++){
-          if(d>best[k] && d<best[k-1]) {
-            best.insert(best.begin(), k, d);
-            img.insert(img.begin(), k, make_pair(i,j));
+          if(d<=best[k] && d>best[k-1]) {
+            //cout << ", and better than " << best[k] << " for " << k;
+            best.insert(best.begin()+k, d);
+            img.insert(img.begin()+k, make_pair(i,j));
           }
         }
+        //cout << endl;
       }
     }
   }
 
   for(int i=0; i<nbcmp; i++){
     cout << "best distance is " << best[i] << " for image " 
-         << (get<0>(img[i]) +1) << ", " << (get<1>(img[i]) +1) << endl;
+          << (get<1>(img[i]) +1) << " of class "<< (get<0>(img[i]) +1) << endl;
   }
 }
 
