@@ -46,8 +46,8 @@ int main(int argc, char** argv)
 	back_insert_iterator<vector<Object4_8> > it(cc);
 	object.writeComponents(it);
 	int maxsize = 0, rank = 0;
-	for(int i=0; i< cc.size(); i++){
-		if(cc[i].size() > maxsize) { maxsize = cc[i].size(); rank = i; }
+	for(int i=0; i< (int) cc.size(); i++){
+		if((int) cc[i].size() > maxsize) { maxsize = cc[i].size(); rank = i; }
   }
   Object4_8 mccObject = cc[rank];
   DigitalSet mcc = mccObject.pointSet();
@@ -88,7 +88,7 @@ int main(int argc, char** argv)
   { cout << "need to uncomment distancetransformShow(image); to work " << endl;}
   //{ distancetransformShow(image);}
   if (string(argv[1]) == "-ND")
-  { naiveDistance(image, argv[2]);}
+  { naiveDistance(image, stoi(string(argv[2])));}
   return 0;
 }
 
@@ -106,16 +106,16 @@ void displayEps(DigitalSet set2d, DigitalSet border,
   board << set2d
         <<image.domain()
         << CustomStyle( bar.className(), new CustomColors( red, red ) );
-  for(int i=0; i<(contour.size()); i++){
+  for(int i=0; i<(int) contour.size(); i++){
     board << contour[i];  
   }  
   board << bar;
   board << CustomStyle( bar.className(), new CustomColors( blue, blue ) ); 
-  for(int i=0; i<(ch.size()); i++){
+  for(int i=0; i<(int) ch.size(); i++){
     board << ch[i];
     //cout << ch[i] << endl;
   }
-  for(int i=0; i<(ch.size()-1); i++){
+  for(int i=0; i<(int)(ch.size()-1); i++){
     board.drawLine(ch[i][0], ch[i][1], ch[i+1][0], ch[i+1][1]);
   }
   board << CustomStyle( bar.className(), new CustomColors( green, green ) );
