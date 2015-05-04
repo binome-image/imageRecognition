@@ -15,7 +15,7 @@
 #include "DGtal/images/SimpleThresholdForegroundPredicate.h"
 #include "DGtal/io/colormaps/GrayscaleColorMap.h"
 #include "DGtal/io/colormaps/HueShadeColorMap.h"
-#include "DGtal/io/colormaps/TickedColorMap.h"
+//#include "DGtal/io/colormaps/TickedColorMap.h"
 #include "DGtal/io/colormaps/GradientColorMap.h"
 #include "utils.h"
 #include "convexhull.h"
@@ -86,12 +86,12 @@ vector<double> distancetransform(Image image, Point barycentre){
 
 
 /* Fonction adapté de l'exemple de la librairie DGtal distancetransform2D.cpp
-situé dans le dossier examples/geometry/volumes/distance/                   */
+situé dans le dossier examples/geometry/volumes/distance/                   
 void distancetransformShow(Image image) {
 	
   trace.beginBlock ( "Example distancetransform2D" );
 
-  /*//! [DTDef]
+  //! [DTDef]
   Z2i::Point a ( 0, 0 );
   Z2i::Point b ( 127, 127);
   
@@ -104,7 +104,7 @@ void distancetransformShow(Image image) {
     (*it)=128;
   //We generate 16 seeds with 0 values.
   randomSeeds(image,16,0);
-  //! [DTDef]*/
+  //! [DTDef]
 
   //! [DTColormaps]
   //Colormap used for the SVG output
@@ -173,5 +173,5 @@ void distancetransformShow(Image image) {
   
   trace.endBlock();
 
-}
+} */
 
